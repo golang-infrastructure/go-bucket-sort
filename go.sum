@@ -1,0 +1,12 @@
+github.com/golang-infrastructure/go-gtypes v0.0.1 h1:hnM1OYSwLPLGkZ4C6ecAxgmAUaPTjnhnUtRNmJj4p6c=
+github.com/golang-infrastructure/go-gtypes v0.0.1/go.mod h1:vFMCxFzxdMInvTtgLZRlWI1rS+mui88sMbL5I+zu1hg=
+github.com/golang-infrastructure/go-if-expression v0.0.2 h1:7xS0/6jNsWSz++xIhxc/gfAfCoDAeBzwxCBhDjQwMRI=
+github.com/golang-infrastructure/go-if-expression v0.0.2/go.mod h1:U4ZtU29/RtZ/cM0tAdBzFaFxENFShSFj+jCRFRE/cv4=
+github.com/golang-infrastructure/go-maths v0.0.0-20221202032910-ddcbd89dc8e9 h1:yWGkN0NlbzZ1WWw5NeQml3t5L4pCXmOLRPfQN/3gmIU=
+github.com/golang-infrastructure/go-maths v0.0.0-20221202032910-ddcbd89dc8e9/go.mod h1:66VNYnuOFws0n4+Wat/SJM92b7KC7tcD6BmGEB5prBI=
+github.com/golang-infrastructure/go-maths v0.0.0-20221211162929-59f096c80d90 h1:IR4HiCCyMVNUZmoWXzGe7wyegW5LPQYMvVnCtj8YDto=
+github.com/golang-infrastructure/go-maths v0.0.0-20221211162929-59f096c80d90/go.mod h1:66VNYnuOFws0n4+Wat/SJM92b7KC7tcD6BmGEB5prBI=
+github.com/golang-infrastructure/go-pointer v0.0.1 h1:Sel/LEUdiUJ9eatKP4q1sV73eLNasL+hGxkIH1wHUTI=
+github.com/golang-infrastructure/go-pointer v0.0.1/go.mod h1:i7lKUSrM30VRB9U5I2okLzAVOza+NCFYjp3JruTW/2c=
+github.com/golang-infrastructure/go-reflect-utils v0.0.0-20221130143747-965ef2eb09c3 h1:jJ7AdpNdLQudsx1hiXY9iwmauHARV4/UB52KnBh9Se0=
+github.com/golang-infrastructure/go-reflect-utils v0.0.0-20221130143747-965ef2eb09c3/go.mod h1:zqXYxqOBa1mL2ilBK6PuH/Wb/Iego7en6XhiKWdZQHI=
