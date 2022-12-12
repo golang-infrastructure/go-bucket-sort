@@ -14,6 +14,7 @@ func TestSort(t *testing.T) {
 		}
 		//slice[index] *= -1
 	}
-	Sort(slice)
+	err := Sort(slice, 1000)
+	t.Log(err)
 	t.Log(slice)
 }

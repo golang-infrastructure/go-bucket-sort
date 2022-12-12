@@ -6,16 +6,38 @@ import (
 	"github.com/golang-infrastructure/go-pointer"
 )
 
-func Sort[T gtypes.Integer](slice []T) {
+// ------------------------------------------------ ---------------------------------------------------------------------
+
+// Sort slice: 要进行桶排序的切片
+// bucketLimit: 最大桶的限制
+func Sort[T gtypes.Integer](slice []T, bucketLimit ...int) error {
+
+	// 桶数量限制
+	leftBucket := DefaultBucketLimit
+	if len(bucketLimit) > 0 {
+		leftBucket = bucketLimit[0]
+	}
+
 	// 正数和负数分别搞一个计数
 	positiveMin, positiveMax, negativeMin, negativeMax := findBoundary(slice)
 	var positiveBucket, negativeBucket []int
 	if positiveMax != nil {
-		positiveBucket = make([]int, *positiveMax-*positiveMin+1)
+		bucketSize := int(*positiveMax - *positiveMin + 1)
+		if leftBucket < bucketSize {
+			return ErrBucketLimit
+		}
+		positiveBucket = make([]int, bucketSize)
+		leftBucket -= bucketSize
 	}
 	if negativeMax != nil {
-		negativeBucket = make([]int, maths.Abs(*negativeMin)-maths.Abs(*negativeMax)+1)
+		bucketSize := int(maths.Abs(*negativeMin) - maths.Abs(*negativeMax) + 1)
+		if leftBucket < bucketSize {
+			return ErrBucketLimit
+		}
+		negativeBucket = make([]int, bucketSize)
+		leftBucket -= bucketSize
 	}
+
 	// 开始分配bucket计数
 	absNegativeMax := maths.Abs(pointer.FromPointerOrDefault(negativeMax, 0))
 	for _, value := range slice {
@@ -29,6 +51,7 @@ func Sort[T gtypes.Integer](slice []T) {
 			negativeBucket[bucket]++
 		}
 	}
+
 	// 统计结果
 	index := 0
 	// 先把负数放进去，要从后往前放，因为距离原点越近的值越大，因此要从距离原点较远的那个方向往原点走
@@ -50,6 +73,7 @@ func Sort[T gtypes.Integer](slice []T) {
 			index++
 		}
 	}
+	return nil
 }
 
 // 找到正数和负数的边界值，确定bucket的时候要使用一个最小的区间
@@ -76,7 +100,11 @@ func findBoundary[T gtypes.Integer](slice []T) (positiveMin, positiveMax, negati
 	return
 }
 
+// ------------------------------------------------ ---------------------------------------------------------------------
+
 //// SortByBucketFunc 根据自定义的bucket进行排序
 //func SortByBucketFunc[T any](slice []T, bucketFunc func(value T) int) {
 //
 //}
+
+// ------------------------------------------------ ---------------------------------------------------------------------
