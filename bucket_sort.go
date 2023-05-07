@@ -8,15 +8,23 @@ import (
 
 // ------------------------------------------------ ---------------------------------------------------------------------
 
-// BucketFunc 为元素分配一个bucket，这个bucket可以是正数也可以是负数，都能够兼容，但是bucket的范围分布应该尽量密集
+// BucketFunc 为元素分配一个bucket，bucket用整数表示，这个bucket可以是正数也可以是负数，都能够兼容，
+// 但是bucket的范围分布应该尽量密集，分布范围比较大的数据不适合使用桶排序
 type BucketFunc[T any] func(index int, value T) int
 
 // ------------------------------------------------ ---------------------------------------------------------------------
 
-// Sort 对整数类型的数组进行排序
+// Sort 对整数类型的数组进行升序排序
 func Sort[T gtypes.Integer](slice []T, bucketLimit ...int) error {
 	return SortByFunc(slice, func(index int, value T) int {
 		return int(value)
+	}, bucketLimit...)
+}
+
+// SortDesc 对整数类型的数组进行倒序排序
+func SortDesc[T gtypes.Integer](slice []T, bucketLimit ...int) error {
+	return SortByFunc(slice, func(index int, value T) int {
+		return -int(value)
 	}, bucketLimit...)
 }
 
