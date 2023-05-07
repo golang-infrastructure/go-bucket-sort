@@ -7,6 +7,8 @@ import (
 	"testing"
 )
 
+// ------------------------------------------------- --------------------------------------------------------------------
+
 func TestSort(t *testing.T) {
 	slice := make([]int, 10)
 	for index := range slice {
@@ -17,8 +19,28 @@ func TestSort(t *testing.T) {
 		//slice[index] *= -1
 	}
 	err := Sort(slice, 1000)
-	t.Log(err)
-	t.Log(slice)
+	assert.Nil(t, err)
+	assert.True(t, IsSorted(slice))
+
+	//t.Log(slice)
+}
+
+// ------------------------------------------------- --------------------------------------------------------------------
+
+func TestSortDesc(t *testing.T) {
+	slice := make([]int, 10)
+	for index := range slice {
+		slice[index] = rand.Intn(100)
+		if rand.Int()%2 == 0 {
+			slice[index] *= -1
+		}
+		//slice[index] *= -1
+	}
+	err := SortDesc(slice, 1000)
+	assert.Nil(t, err)
+	assert.True(t, IsSortedDesc(slice))
+
+	//t.Log(slice)
 }
 
 // ------------------------------------------------ ---------------------------------------------------------------------
@@ -41,11 +63,34 @@ func TestSortByFunc(t *testing.T) {
 		return value.age
 	})
 	assert.Nil(t, err)
-
-	for _, user := range userSlice {
-		t.Log(fmt.Sprintf("age: %d, name: %s\n", user.age, user.name))
+	for index := 1; index < len(userSlice); index++ {
+		assert.True(t, userSlice[index].age >= userSlice[index-1].age)
 	}
+
+	//for _, user := range userSlice {
+	//	t.Log(fmt.Sprintf("age: %d, name: %s\n", user.age, user.name))
+	//}
 
 }
 
 // ------------------------------------------------ ---------------------------------------------------------------------
+
+func IsSorted(slice []int) bool {
+	for index := 1; index < len(slice); index++ {
+		if slice[index] < slice[index-1] {
+			return false
+		}
+	}
+	return true
+}
+
+func IsSortedDesc(slice []int) bool {
+	for index := 1; index < len(slice); index++ {
+		if slice[index] > slice[index-1] {
+			return false
+		}
+	}
+	return true
+}
+
+// ------------------------------------------------- --------------------------------------------------------------------
